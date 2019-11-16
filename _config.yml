@@ -1,0 +1,12 @@
+markdown: kramdown
+
+defaults:
+  - scope:
+      path: "" # empty string for all files
+    values:
+      layout: default
+      
+baseurl: ""
+
+gems:
+  - jekyll-redirect-from
