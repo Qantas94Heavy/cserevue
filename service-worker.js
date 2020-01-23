@@ -1,1 +1,39 @@
-"use strict";var precacheConfig=[["/index.html","096c1d526a91124336d9bc09309dac1b"],["/static/css/main.9de7c3df.css","5a67152f6c845b7068b195ad6400fd70"],["/static/js/main.f108a291.js","30a6b7ee693c986ea90cf8416de7522d"],["/static/media/Arc-Clubs-Logo-Black-Transparent.e0e16cf7.png","e0e16cf7f62ee1f47f3180f4fdc0dd9c"],["/static/media/CoffeeOnCampus.48d74b46.jpg","48d74b46a34621d2b9bf1333f22b6e3b"],["/static/media/band.012ea31f.jpg","012ea31fc44f0099600767315ad75e69"],["/static/media/cast.b91cf1d8.jpg","b91cf1d8fa7a3adc6405030a36d00d23"],["/static/media/choreos.5b919d8d.jpg","5b919d8d83fb771f01b6e856f31f10fb"],["/static/media/costumes.f6241d2b.jpg","f6241d2b85f4f999ee083a43b7e902f9"],["/static/media/cse-school.235d63c3.png","235d63c3aaed41b2a8843fb736c0ef6d"],["/static/media/design.c762d873.png","c762d873313d73e7f4fee086c831b3fc"],["/static/media/doge.3df55255.jpg","3df55255b38ef8904d4e12d67b2520ba"],["/static/media/faastprint.b1f1df8b.png","b1f1df8bd5cdd681d64a4f5ada0d8a2b"],["/static/media/fundraising.772ec2cf.jpg","772ec2cfa2cc22509697efc248a7841e"],["/static/media/logo-black-transparent.951d1fd0.png","951d1fd09cd136203a51f084598af58e"],["/static/media/logo-white-transparent.c73fcbb6.png","c73fcbb65d1af5dfdc556d39b23cb276"],["/static/media/promos.8c968f75.jpg","8c968f75390535cd5f6424ca82d4cf3f"],["/static/media/pubs.f3906077.PNG","f3906077020049c0a4ba3f3e7fdbb016"],["/static/media/scripts.c446ae2c.jpg","c446ae2c3fb6ee05ec9c14641865b800"],["/static/media/socials.84d936cd.jpg","84d936cde69912fcaab8f1476f4452ad"],["/static/media/tech.63e0c237.jpg","63e0c237210db785f55c2011bcd87dc2"],["/static/media/videos.105e88bb.png","105e88bb4cfe26915d6d50607c9385e4"],["/static/media/vocals.d6a5c5d0.jpg","d6a5c5d0c5dcb7bc1ec8e0c31dbc1499"],["/static/media/vos.a79b38d0.jpg","a79b38d0d562d712b5676b901d3377e9"],["/static/media/webmin.fd05e87d.jpg","fd05e87d4bee9106968e9763173ca815"],["/static/media/wellbeing.37e9f532.jpg","37e9f532a8c86964dd09314fbf34afa4"],["/static/media/wisetech.3044516c.PNG","3044516c2c0dc05e1372c81e6cdb5d0c"]],cacheName="sw-precache-v3-sw-precache-webpack-plugin-"+(self.registration?self.registration.scope:""),ignoreUrlParametersMatching=[/^utm_/],addDirectoryIndex=function(e,t){var a=new URL(e);return"/"===a.pathname.slice(-1)&&(a.pathname+=t),a.toString()},cleanResponse=function(t){return t.redirected?("body"in t?Promise.resolve(t.body):t.blob()).then(function(e){return new Response(e,{headers:t.headers,status:t.status,statusText:t.statusText})}):Promise.resolve(t)},createCacheKey=function(e,t,a,c){var n=new URL(e);return c&&n.pathname.match(c)||(n.search+=(n.search?"&":"")+encodeURIComponent(t)+"="+encodeURIComponent(a)),n.toString()},isPathWhitelisted=function(e,t){if(0===e.length)return!0;var a=new URL(t).pathname;return e.some(function(e){return a.match(e)})},stripIgnoredUrlParameters=function(e,a){var t=new URL(e);return t.hash="",t.search=t.search.slice(1).split("&").map(function(e){return e.split("=")}).filter(function(t){return a.every(function(e){return!e.test(t[0])})}).map(function(e){return e.join("=")}).join("&"),t.toString()},hashParamName="_sw-precache",urlsToCacheKeys=new Map(precacheConfig.map(function(e){var t=e[0],a=e[1],c=new URL(t,self.location),n=createCacheKey(c,hashParamName,a,/\.\w{8}\./);return[c.toString(),n]}));function setOfCachedUrls(e){return e.keys().then(function(e){return e.map(function(e){return e.url})}).then(function(e){return new Set(e)})}self.addEventListener("install",function(e){e.waitUntil(caches.open(cacheName).then(function(c){return setOfCachedUrls(c).then(function(a){return Promise.all(Array.from(urlsToCacheKeys.values()).map(function(t){if(!a.has(t)){var e=new Request(t,{credentials:"same-origin"});return fetch(e).then(function(e){if(!e.ok)throw new Error("Request for "+t+" returned a response with status "+e.status);return cleanResponse(e).then(function(e){return c.put(t,e)})})}}))})}).then(function(){return self.skipWaiting()}))}),self.addEventListener("activate",function(e){var a=new Set(urlsToCacheKeys.values());e.waitUntil(caches.open(cacheName).then(function(t){return t.keys().then(function(e){return Promise.all(e.map(function(e){if(!a.has(e.url))return t.delete(e)}))})}).then(function(){return self.clients.claim()}))}),self.addEventListener("fetch",function(t){if("GET"===t.request.method){var e,a=stripIgnoredUrlParameters(t.request.url,ignoreUrlParametersMatching),c="index.html";(e=urlsToCacheKeys.has(a))||(a=addDirectoryIndex(a,c),e=urlsToCacheKeys.has(a));var n="/index.html";!e&&"navigate"===t.request.mode&&isPathWhitelisted(["^(?!\\/__).*"],t.request.url)&&(a=new URL(n,self.location).toString(),e=urlsToCacheKeys.has(a)),e&&t.respondWith(caches.open(cacheName).then(function(e){return e.match(urlsToCacheKeys.get(a)).then(function(e){if(e)return e;throw Error("The cached response that was expected is missing.")})}).catch(function(e){return console.warn('Couldn\'t serve response for "%s" from cache: %O',t.request.url,e),fetch(t.request)}))}});
+/**
+ * Welcome to your Workbox-powered service worker!
+ *
+ * You'll need to register this file in your web app and you should
+ * disable HTTP caching for this file too.
+ * See https://goo.gl/nhQhGp
+ *
+ * The rest of the code is auto-generated. Please don't update this file
+ * directly; instead, make changes to your Workbox build configuration
+ * and re-run your build process.
+ * See https://goo.gl/2aRDsh
+ */
+
+importScripts("https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js");
+
+importScripts(
+  "/precache-manifest.4ac9a5ecb1092fe9d2fce10853a6d004.js"
+);
+
+self.addEventListener('message', (event) => {
+  if (event.data && event.data.type === 'SKIP_WAITING') {
+    self.skipWaiting();
+  }
+});
+
+workbox.core.clientsClaim();
+
+/**
+ * The workboxSW.precacheAndRoute() method efficiently caches and responds to
+ * requests for URLs in the manifest.
+ * See https://goo.gl/S9QRab
+ */
+self.__precacheManifest = [].concat(self.__precacheManifest || []);
+workbox.precaching.precacheAndRoute(self.__precacheManifest, {});
+
+workbox.routing.registerNavigationRoute(workbox.precaching.getCacheKeyForURL("/index.html"), {
+  
+  blacklist: [/^\/_/,/\/[^\/?]+\.[^\/]+$/],
+});
